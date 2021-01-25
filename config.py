@@ -1,16 +1,26 @@
+from itertools import cycle
+
 class Config:
     __config = {
         "app_title" : "Covoy's Game of Life",
-        "tile_size": 16,
-        "screen_width": 1080,
-        "screen_height": 720,
+        "tile_sizes": [8, 16, 32],
+        "tile_size": 8,
+
+         # make sure the dimensions of screen are multiples of all the tile_sizes.
+        "screen_width": 1088,
+        "screen_height": 736,
+
+        "frames_per_second": 60,
+        "generations_per_second": 10,
+
+        "font": 'courier new',
+        "font_size": 15,
         "colors": {
             "BLACK": (0, 0, 0),
             "WHITE": (255, 255, 255),
-            "GREY": (50, 50, 50)
+            "GREY": (50, 50, 50),
+            "RED": (255, 0, 0)
         },
-        "frames_per_second": 60,
-        "generations_per_second": 10
     }
 
     __setters = ["tile_size"]

@@ -5,17 +5,23 @@ BLACK = Config.get_config("colors")["BLACK"]
 WHITE = Config.get_config("colors")["WHITE"]
 
 class Board:
-    def __init__(self, sprite_groups, width, height):
+    def __init__(self, sprite_groups, width, height, tile_size):
         self.width = width
         self.height = height
-        self.cells = [[Cell(sprite_groups, x, y) for x in range(width)] for y in range(height)]
+        self.cells = [[Cell(sprite_groups, x, y, tile_size) for x in range(width)] for y in range(height)]
 
     def toggle_cell(self, row, col):
         cell = self.cells[row][col]
         if cell.is_alive:
-            cell.dead()
+            cell.kill()
         else:
-            cell.birth()
+            cell.revive()
+
+    def revive_cell(self, row, col):
+        self.cells[row][col].revive()
+
+    def kill_cell(self, row, col):
+        self.cells[row][col].kill()
 
     def next_generation(self):
         alive_table = [[False for _ in range(self.width)] for _ in range(self.height)]
@@ -44,7 +50,7 @@ class Board:
         for y, cell_rows in enumerate(self.cells):
             for x, cell in enumerate(cell_rows):
                 if alive_table[y][x]:
-                    cell.birth(WHITE)
+                    cell.revive(WHITE)
                 else:
-                    cell.dead(BLACK)
+                    cell.kill(BLACK)
     

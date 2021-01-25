@@ -8,21 +8,21 @@ TILESIZE = Config.get_config("tile_size")
 
 class Cell(pygame.sprite.Sprite):
 
-    def __init__(self, sprite_groups, x, y):
+    def __init__(self, sprite_groups, x, y, tile_size):
         self.groups = sprite_groups
 
         pygame.sprite.Sprite.__init__(self, sprite_groups)
-        self.image = pygame.Surface((TILESIZE, TILESIZE))
+        self.image = pygame.Surface((tile_size, tile_size))
         self.rect = self.image.get_rect()
-        self.rect.x = x * TILESIZE
-        self.rect.y = y * TILESIZE
+        self.rect.x = x * tile_size
+        self.rect.y = y * tile_size
 
-        self.dead(BLACK)
+        self.kill(BLACK)
 
-    def birth(self, color=WHITE):
+    def revive(self, color=WHITE):
         self.is_alive = True
         self.image.fill(color)
 
-    def dead(self, color=BLACK):
+    def kill(self, color=BLACK):
         self.is_alive = False
         self.image.fill(color)
