@@ -20,9 +20,12 @@ Alive will be denoted by white and dead by white.
 
 ### Rules:
 1. An alive cell dies if:
-    1. it has four or more neighbours because of overcrowding.
-    2. it has two or fewer neighbours because of isolation.
+    1. It has four or more neighbours because of overcrowding.
+    2. It has two or fewer neighbours because of isolation.
 2. An alive cell lives if it has three neighbours.
 3. A dead cell becomes alive if it has three neighbours.
 
 Note: a cell can have 8 neighbours in all the eight directions.
+
+
+![](game-of-life.gif)
